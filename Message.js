@@ -65,7 +65,7 @@ export default class Message extends React.Component {
   }
 
   renderImage(rowData, rowID, diffMessage, forceRenderImage, onImagePress){
-    if (rowData.image !== null) {
+    if (rowData.image) {
       if (forceRenderImage === true) {
         diffMessage = null; // force rendering
       }
