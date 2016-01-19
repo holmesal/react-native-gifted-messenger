@@ -1,5 +1,7 @@
 import React, {Text, View, Animated, Image, StyleSheet} from 'react-native';
 
+import Triangle from 'react-native-triangle';
+
 let styles = StyleSheet.create({
   bubble: {
     borderRadius: 15,
@@ -57,15 +59,25 @@ export default class Bubble extends React.Component {
   render(){
     var flexStyle = {};
     if ( this.props.text.length > 40 ) {
-     flexStyle.flex = 1;
+      flexStyle.flex = 1;
+      flexStyle.alignSelf = 'stretch';
     }
 
     return (
-      <View style={[styles.bubble,
-        (this.props.position === 'left' ? styles.bubbleLeft : styles.bubbleRight),
-        (this.props.status === 'ErrorButton' ? styles.bubbleError : null),
-        flexStyle]}>
-        {this.renderText(this.props.text, this.props.position)}
+      <View style={[{alignItems: this.props.position === 'left' ? 'flex-start' : 'flex-end'}, flexStyle]}>
+        <View style={[styles.bubble,
+          (this.props.position === 'left' ? styles.bubbleLeft : styles.bubbleRight),
+          (this.props.status === 'ErrorButton' ? styles.bubbleError : null),
+          flexStyle]}>
+          {this.renderText(this.props.text, this.props.position)}
+        </View>
+        <Triangle
+            width={12}
+            height={10}
+            color={this.props.position === 'left' ? styles.bubbleLeft.backgroundColor : styles.bubbleRight.backgroundColor}
+            direction={this.props.position === 'left' ? 'up-left' : 'up-right'}
+            style={{marginLeft: 30, marginRight: 30}}
+        />
       </View>
     )
   }

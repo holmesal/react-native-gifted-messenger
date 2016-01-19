@@ -155,7 +155,6 @@ export default class Message extends React.Component {
           status={rowData.status}
           text={rowData.text}
           renderCustomText={this.props.renderCustomText}
-          
           styles={styles}
           />
         {rowData.position === 'right' ? this.renderImage(rowData, rowID) : null}
